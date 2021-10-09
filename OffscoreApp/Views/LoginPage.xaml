@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OffscoreApp.Views.LoginPage">
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout" x:Key="LoginStack">
+            <Setter Property="Orientation" Value="Vertical"/>
+            <Setter Property="Padding" Value="30"/>
+            <Setter Property="Spacing" Value="40"/>
+            <Setter Property="FlowDirection" Value="RightToLeft"/>
+            <Setter Property="BackgroundColor" Value="Black" />
+        </Style>
+        <Style TargetType="Label" x:Key="FormTitle">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+        <Style TargetType="Entry" x:Key="LoginEntry">
+            <Setter Property="PlaceholderColor" Value="White"/>
+            <Setter Property="HeightRequest" Value="40"/>
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+        <Style TargetType="Button" x:Key="LoginButton">
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="BackgroundColor" Value="#8E8C86"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Style="{StaticResource LoginStack}">
+            <Image Source="mainLogo.png" WidthRequest="750" HeightRequest="200"></Image>
+            <Frame BackgroundColor="#8E8C86" HasShadow="False" CornerRadius="7">
+                <StackLayout>
+                    <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Email"   
+                           Keyboard="Email"  
+                           Style="{StaticResource LoginEntry}" />
+                    <Entry x:Name="Password" Text="{Binding Password}" Placeholder="Password" 
+                           Style="{StaticResource LoginEntry}"/>
+                </StackLayout>
+            </Frame>
+            <Button Command="{Binding SubmitCommand}" Text="LogIn" Style="{StaticResource LoginButton}" CornerRadius="7"/>
+            <Label Text="-OR-" FontSize="18" TextColor="#8E8C86" HorizontalOptions="Center"/>
+            <Button Command="{Binding SubmitCommand}" Text="Singup" Style="{StaticResource LoginButton}" CornerRadius="7"/>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
