@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OffscoreApp.Views.SignupPage">
+
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout" x:Key="LoginStack">
+            <Setter Property="Orientation" Value="Vertical"/>
+            <Setter Property="Padding" Value="30"/>
+            <Setter Property="Spacing" Value="40"/>
+            <Setter Property="FlowDirection" Value="RightToLeft"/>
+            <Setter Property="BackgroundColor" Value="Black" />
+        </Style>
+        <Style TargetType="Label" x:Key="FormTitle">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+        <Style TargetType="Entry" x:Key="LoginEntry">
+            <Setter Property="PlaceholderColor" Value="White"/>
+            <Setter Property="HeightRequest" Value="40"/>
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+        <Style TargetType="Button" x:Key="SignupButton">
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="BackgroundColor" Value="#8E8C86"/>
+        </Style>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Grid BackgroundColor="Black" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="1.4*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="5.5*" />
+                    <ColumnDefinition Width="0.3*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Image Source="mainLogo.png" WidthRequest="750" HeightRequest="200" Grid.Row="1" Grid.Column="1"></Image>
+
+            <Frame BackgroundColor="#8E8C86" HasShadow="False" CornerRadius="7" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" Padding="16">
+                <StackLayout >
+                    <Entry x:Name="FullName" Text="{Binding FullName}" Placeholder="Enter your full name"
+                            Style="{StaticResource LoginEntry}" FontFamily="CustomFont" PlaceholderColor="Black" FontSize="19" /> 
+
+                    <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Enter your email"   
+                            Keyboard="Email"  
+                            Style="{StaticResource LoginEntry}" FontFamily="CustomFont" PlaceholderColor="Black" FontSize="19" />
+
+                    <Entry x:Name="Password" Text="{Binding Password}" Placeholder="Enter your password" 
+                            Style="{StaticResource LoginEntry}" FontFamily="CustomFont" PlaceholderColor="Black" FontSize="19" />
+                    
+                    <Entry x:Name="ConfirmPassword" Text="{Binding ConfirmPassword}" Placeholder="Confirm your password" 
+                            Style="{StaticResource LoginEntry}" FontFamily="CustomFont" PlaceholderColor="Black" FontSize="19" />
+
+                    <Entry x:Name="BirthDay" Text="{Binding Email}" Placeholder="Enter your birthday"   
+                            
+                            Style="{StaticResource LoginEntry}" FontFamily="CustomFont" PlaceholderColor="Black" FontSize="19" />
+
+                </StackLayout>
+            </Frame>
+            
+            <Button TextTransform="None" Command="{Binding SubmitCommand}" Text="Signup" Style="{StaticResource SignupButton}" CornerRadius="7" TextColor="Black" FontSize="26" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" FontFamily="CustomFont" HorizontalOptions="Center" WidthRequest="250" Padding="8" />
+            </Grid>
+        </StackLayout>
+                   
+
+    </ContentPage.Content>
+</ContentPage>

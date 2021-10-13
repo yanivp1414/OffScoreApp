@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using OffscoreApp.Views;
 
+[assembly: ExportFont("Righteous-Regular.ttf", Alias = "CustomFont")]
 namespace OffscoreApp
 {
     public partial class App : Application
