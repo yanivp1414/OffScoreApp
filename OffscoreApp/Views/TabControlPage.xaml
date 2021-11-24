@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sho="http://sharpnado"
+             xmlns:tabs="http://sharpnado.com"
+             xmlns:views="clr-namespace:OffscoreApp.Views"
+             x:Class="OffscoreApp.Views.TabControlPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BottomTabStyle" TargetType="tabs:BottomTabItem">
+                <Setter Property="SelectedTabColor" Value="#bdc3c7" />
+                <Setter Property="UnselectedLabelColor" Value="Black" />
+                <Setter Property="UnselectedIconColor" Value="Black" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="IconSize" Value="36" />
+                <Setter Property="IsTextVisible" Value="False" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content> 
+        <Grid ColumnSpacing="0" RowSpacing="0"
+      BackgroundColor="#FFFFFF">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+
+            <tabs:ViewSwitcher x:Name="Switcher"
+                       Grid.Row="0"
+                       Animate="False"
+                       SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}">
+                <Label Text="Hello world 1" TextColor="#8E8C86" BackgroundColor="Black" />
+                <Label Text="Hello world 2" TextColor="#8E8C86" BackgroundColor="Black"/>
+                <views:HomePage />
+                <Label Text="Hello world 3" TextColor="#8E8C86" BackgroundColor="Black"/>
+                <views:ProfilePage />
+            </tabs:ViewSwitcher>
+
+            <BoxView BackgroundColor="#8E8C86" HeightRequest="1" Grid.Row="1"/>
+
+            <tabs:TabHostView x:Name="TabHost"
+                    Grid.Row="2"
+                    BackgroundColor="#8E8C86"
+                    SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}"
+                    TabType="Fixed">
+                <tabs:TabHostView.Tabs>
+                    <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
+                            IconImageSource="graphLogo.png" />
+
+                    <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
+                            IconImageSource="questionMarkLogo.png" />
+
+                    <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
+                            IconImageSource="hoseLogo.png" />
+
+                    <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
+                            IconImageSource="listLogo.png" />
+
+                    <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
+                            IconImageSource="personLogo.png" />
+                </tabs:TabHostView.Tabs>
+            </tabs:TabHostView>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

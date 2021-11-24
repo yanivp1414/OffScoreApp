@@ -4,27 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OffscoreApp.ViewModels;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace OffscoreApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SignupPage : ContentPage
+    public partial class TabControlPage : ContentPage
     {
-        public SignupPage()
+        public TabControlPage()
         {
-
-            SignupPageViewModel context = new SignupPageViewModel();
-            context.push += (p) => Navigation.PushAsync(p);
+            TabControlViewModel context = new TabControlViewModel();
+            context.Push += (p) => Navigation.PushAsync(p);
             this.BindingContext = context;
             InitializeComponent();
-            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.Black;
-            ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.Gray;
-
         }
-
-
     }
 }
