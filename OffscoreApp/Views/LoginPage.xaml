@@ -3,71 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OffscoreApp.Views.LoginPage"
              NavigationPage.HasNavigationBar="False">
-    
-    <ContentPage.Resources>
-        <Style TargetType="StackLayout" x:Key="LoginStack">
-            <Setter Property="Orientation" Value="Vertical"/>
-            <Setter Property="Padding" Value="30"/>
-            <Setter Property="Spacing" Value="40"/>
-            <Setter Property="FlowDirection" Value="RightToLeft"/>
-            <Setter Property="BackgroundColor" Value="Black" />
-        </Style> 
-        <Style TargetType="Label" x:Key="FormTitle">
-            <Setter Property="HorizontalOptions" Value="Center"/>
-            <Setter Property="FontSize" Value="Large"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
-        </Style>
-        <Style TargetType="Entry" x:Key="LoginEntry">
-            <Setter Property="PlaceholderColor" Value="White"/>
-            <Setter Property="HeightRequest" Value="40"/>
-            <Setter Property="TextColor" Value="White"/>
-        </Style>
-        <Style TargetType="Button" x:Key="LoginButton">
-            <Setter Property="FontAttributes" Value="Bold"/>
-            <Setter Property="FontSize" Value="Large"/>
-            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-            <Setter Property="TextColor" Value="White"/>
-            <Setter Property="BackgroundColor" Value="#8E8C86"/>
-        </Style>
-    </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid BackgroundColor="Black"  >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.2*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="1.5*" />
-                <RowDefinition Height="0.35*" />
-                <RowDefinition Height="0.35*" />
-                <RowDefinition Height="0.35*" />
-                <RowDefinition Height="0.5*" />
+        <StackLayout>
+        <!--Photo-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Frame BorderColor="white"  CornerRadius="100"  Grid.Column="1" Grid.Row="0" IsClippedToBounds="True" Padding="0" HeightRequest="150" WidthRequest="150" HorizontalOptions="CenterAndExpand">
+                    <Image x:Name="theImage" Source="{Binding UserImgSrc}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" HeightRequest="150" WidthRequest="150"/>
+                </Frame>
+            </Grid>
 
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.3*" />
-                <ColumnDefinition Width="5.5*" />
-                <ColumnDefinition Width="0.3*"/>
-            </Grid.ColumnDefinitions>
+            <Grid HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="35"/>
+                    <ColumnDefinition Width="35"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
 
-
-            <Image Source="mainLogo.png" WidthRequest="750" HeightRequest="200" Grid.Row="1" Grid.Column="1"></Image>
-            <Frame BackgroundColor="#8E8C86" HasShadow="False" CornerRadius="7" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" Padding="14">
-                <StackLayout >
-                    <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Email"   
-                            Keyboard="Email"  
-                            Style="{StaticResource LoginEntry}" FontFamily="CustomFont" PlaceholderColor="Black" FontSize="19" />
-                    <Entry x:Name="Password" Text="{Binding Password}" Placeholder="Password" 
-                            Style="{StaticResource LoginEntry}" IsPassword="True" FontFamily="CustomFont" PlaceholderColor="Black" FontSize="19" />
-                    <Label Text="Forgot Password?" Grid.Row="4" Grid.Column="1" HorizontalOptions="End"  VerticalOptions="Center" FontSize="13" TextColor="Black" TextDecorations="Underline">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ResetPassword}" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </StackLayout>
-            </Frame>
-            <Button TextTransform="None" Command="{Binding LoginCommand}" Text="Login" Style="{StaticResource LoginButton}" CornerRadius="7" TextColor="Black" FontSize="26" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" FontFamily="CustomFont" HorizontalOptions="Center" WidthRequest="250" Padding="8" />
-            <Label Text="-OR-" FontSize="18" TextColor="#8E8C86" HorizontalOptions="Center" Grid.Row="4" Grid.Column="1" VerticalOptions="Center"/>
-            <Button TextTransform="None" Command="{Binding PushToSignup}" Text="Signup" Style="{StaticResource LoginButton}" CornerRadius="7" TextColor="Black"  FontSize="26" Grid.Row="5" Grid.Column="1" VerticalOptions="Center" FontFamily="CustomFont" HorizontalOptions="Center" WidthRequest="250" Padding="8" />
-        </Grid>
+                <ImageButton Source="gallery.png" HeightRequest="35"   VerticalOptions="Center" WidthRequest="35" HorizontalOptions="End" BackgroundColor="White" Grid.Column="0" Grid.Row="0" Command="{Binding PickImageCommand}"/>
+                <ImageButton Source="camera.jpg" HeightRequest="35"  VerticalOptions="Center" WidthRequest="35" HorizontalOptions="Start" Grid.Column="1" Grid.Row="0" BackgroundColor="White" Command="{Binding CameraImageCommand}"/>
+            </Grid>
+        </StackLayout>
 
     </ContentPage.Content>
+
 </ContentPage>

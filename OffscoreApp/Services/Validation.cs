@@ -56,7 +56,7 @@ namespace OffscoreApp.Services
                     break;
                 }
             }
-            if(validConditions == 2)
+            if(validConditions == 3)
                 return true;
             return false;
         }
