@@ -7,7 +7,7 @@
              x:Class="OffscoreApp.Views.TabControlPage">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style x:Key="BottomTabStyle" TargetType="tabs:BottomTabItem">
+           <Style x:Key="BottomTabStyle" TargetType="tabs:BottomTabItem">
                 <Setter Property="SelectedTabColor" Value="#bdc3c7" />
                 <Setter Property="UnselectedLabelColor" Value="Black" />
                 <Setter Property="UnselectedIconColor" Value="Black" />
@@ -39,6 +39,7 @@
             </tabs:ViewSwitcher>
 
             <BoxView BackgroundColor="#8E8C86" HeightRequest="1" Grid.Row="1"/>
+
 
             <tabs:TabHostView x:Name="TabHost"
                     Grid.Row="2"

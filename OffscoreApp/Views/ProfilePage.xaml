@@ -1,70 +1,67 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="OffscoreApp.Views.ProfilePage">
+             x:Class="OffscoreApp.Views.ProfilePage" BackgroundColor="Black">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+        <Style TargetType="Label" x:Key="ProfilePicLable">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="HeightRequest" Value="40"/>
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
     <ContentView.Content>
-        <ScrollView>
-            <StackLayout>
+        <!--Photo-->
+        <ContentView>
+            <RefreshView>
+                    <StackLayout Style="{StaticResource ProfilePicLable}">
+          <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Frame BorderColor="Black"  CornerRadius="100"  Grid.Column="1" Grid.Row="0" IsClippedToBounds="True" Padding="0" HeightRequest="150" WidthRequest="150" HorizontalOptions="CenterAndExpand">
+                <Image x:Name="theImage" Source="{Binding UserImgSrc}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" HeightRequest="150" WidthRequest="150"/>
+            </Frame>
+          </Grid>
 
-                <StackLayout.Background>
-                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                        <GradientStop Color="#011724" Offset="0.1">
+          <Grid HorizontalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="35"/>
+                <ColumnDefinition Width="35"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
 
-                        </GradientStop>
-                        <GradientStop Color="#13649E" Offset="1.0"></GradientStop>
-                    </LinearGradientBrush>
-                </StackLayout.Background>
+            <ImageButton Source="gallery.png" HeightRequest="35"   VerticalOptions="Center" WidthRequest="35" HorizontalOptions="End" BackgroundColor="White" Grid.Column="0" Grid.Row="0" Command="{Binding PickImageCommand}"/>
+            <ImageButton Source="camera.jpg" HeightRequest="35"  VerticalOptions="Center" WidthRequest="35" HorizontalOptions="Start" Grid.Column="1" Grid.Row="0" BackgroundColor="White" Command="{Binding CameraImageCommand}"/>
+          </Grid>
 
-                <Frame HeightRequest="90" WidthRequest="90" BackgroundColor="#a5b3f9" >
-                    <StackLayout>
-                        <Label Text="{Binding Account.Username}" TextColor="Black" FontSize="25"></Label>
-                        <Label Text="{Binding Account.Email}" TextColor="White" FontSize="25"></Label>
-                    </StackLayout>
-                </Frame>
-                <AbsoluteLayout Margin="0">
-                    <Image Source="AccountIcon2.png"  AbsoluteLayout.LayoutBounds="325, -45, 70, 70"></Image>
+            <Label Text="{Binding Name}" 
+                           Style="{StaticResource ProfilePicLable}" FontFamily="CustomFont" TextColor="White" FontSize="19" />
 
-                </AbsoluteLayout>
-                <Label  Text="Nick name"  Margin="0,20,0,0" ></Label>
-                <Frame BackgroundColor="#13649E
-">
-                    <Grid x:Name="NameGrid" VerticalOptions="Center" >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60*" />
-                            <ColumnDefinition Width="40*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Text="{Binding Account.Username}" TextColor="White" FontSize="25" HorizontalOptions="Center"></Label>
-                        <Image Source="NameIcon.png" Grid.Column="0" HorizontalOptions="Start"/>
-                    </Grid>
+            <Label Text="{Binding Email}"                        
+                           Style="{StaticResource ProfilePicLable}" FontFamily="CustomFont" TextColor="White" FontSize="19" />
 
-                </Frame>
+            <Label Text="{Binding Birthday}" 
+                           Style="{StaticResource ProfilePicLable}" FontFamily="CustomFont" TextColor="White" FontSize="19" />
 
-                <Label  Text="Email"   Margin="0,20,0,0"></Label>
-                <Frame BackgroundColor="#13649E
-">
-                    <Grid x:Name="EmailGrid" VerticalOptions="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="95*" />
-                            <ColumnDefinition Width="5*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Text="{Binding Account.Email}" TextColor="White" FontSize="25" HorizontalTextAlignment="Center"></Label>
-                        <Image Source="EmailIcon.png" Grid.Column="0"  HorizontalOptions="Start"/>
-                    </Grid>
-                </Frame>
-                <Label  Text="Password" Margin="0,20,0,0"></Label>
-                <Frame BackgroundColor="#13649E
-">
-                    <Grid x:Name="PassGrid" VerticalOptions="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60*" />
-                            <ColumnDefinition Width="40*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Text="{Binding Account.Pass}" TextColor="White" FontSize="25" HorizontalTextAlignment="Center"></Label>
-                        <Image Source="PassIcon.png" Grid.Column="0" HorizontalOptions="Start" />
-                        <Button ImageSource="changePass.png" Command="{Binding ChangePass}" BackgroundColor="Transparent"  Grid.Column="1" HorizontalOptions="End"></Button>
-                    </Grid>
-                </Frame>
-            </StackLayout>
-        </ScrollView>
+            <Label Text="{Binding Rank}" 
+                           Style="{StaticResource ProfilePicLable}" FontFamily="CustomFont" TextColor="White" FontSize="19" />
+
+           
+
+        </StackLayout>
+            </RefreshView>
+        </ContentView>
+
     </ContentView.Content>
 </ContentView>

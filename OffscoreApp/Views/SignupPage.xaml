@@ -30,7 +30,7 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout  Style="{StaticResource SignupStack}">
+        <StackLayout Style="{StaticResource SignupStack}">
 
             <Grid BackgroundColor="Black" >
                 <Grid.RowDefinitions>
