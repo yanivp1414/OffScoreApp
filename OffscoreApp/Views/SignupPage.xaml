@@ -55,7 +55,7 @@
                            Style="{StaticResource SignupEntry}" FontFamily="CustomFont" PlaceholderColor="Black" FontSize="19" />
 
                         <Entry Text="{Binding Email}" Placeholder="Enter your email"   
-                           Keyboard="Email"   
+                           Keyboard="Email"    
                            Style="{StaticResource SignupEntry}" FontFamily="CustomFont" PlaceholderColor="Black" FontSize="19" />
 
                         <Entry IsPassword="True" Text="{Binding Password}" Placeholder="Enter your password" 
