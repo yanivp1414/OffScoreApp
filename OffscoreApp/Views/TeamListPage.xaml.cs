@@ -10,11 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace OffscoreApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePage : ContentView
+    public partial class TeamListPage : ContentView
     {
-        public HomePage()
+        public TeamListPage()
         {
-            HomePageViewModel context = new HomePageViewModel();
+            TeamListViewModel context = new TeamListViewModel();
             this.BindingContext = context;
             InitializeComponent();
         }

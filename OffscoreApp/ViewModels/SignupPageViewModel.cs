@@ -56,11 +56,6 @@ namespace OffscoreApp.ViewModels
         {
             
             bool validAccount = true;
-            if (!Validation.IsUsername(Email))
-            {
-                await App.Current.MainPage.DisplayAlert("Invalid Username", $"Username cannot contain {Validation.INVALID_CHARS}, two '.' in a row, or start/end with '.'. Username cannot be empty", "OK");
-                validAccount = false;
-            }
             if (!Validation.IsEmail(Email))
             {
                 await App.Current.MainPage.DisplayAlert("Invalid Email", "Check email and try again", "OK");
@@ -76,6 +71,11 @@ namespace OffscoreApp.ViewModels
                 await App.Current.MainPage.DisplayAlert("You are not old enough", $"You must be 16 years old or over...", "OK");
                 validAccount = false;
             }
+            if(FullName == null || FullName == "")
+            {
+                await App.Current.MainPage.DisplayAlert("Name not entered", $"You must enter a name to sign up.", "OK");
+                validAccount = false;
+            }
             if (validAccount)
             {
                 //Creates an Account object to send to the API
@@ -87,6 +87,10 @@ namespace OffscoreApp.ViewModels
                     await App.Current.MainPage.DisplayAlert("Signup Completed Successfully!", "Your account has been created and saved on our servers.", "Login");
                     Pop?.Invoke();
                     return;
+                }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert("A User Already Exists", "A user with these credentials already exists.", "OK");
                 }
             }
         }

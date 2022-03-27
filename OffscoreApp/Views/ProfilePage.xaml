@@ -1,67 +1,90 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="OffscoreApp.Views.ProfilePage" BackgroundColor="Black">
+             x:Class="OffscoreApp.Views.ProfilePage"
+             NavigationPage.HasNavigationBar="False">
 
-    <ContentView.Resources>
-        <ResourceDictionary>
-        <Style TargetType="Label" x:Key="ProfilePicLable">
-            <Setter Property="TextColor" Value="White"/>
-            <Setter Property="HeightRequest" Value="40"/>
-            <Setter Property="TextColor" Value="White"/>
-        </Style>
-        </ResourceDictionary>
-    </ContentView.Resources>
-    
     <ContentView.Content>
-        <!--Photo-->
-        <ContentView>
-            <RefreshView>
-                    <StackLayout Style="{StaticResource ProfilePicLable}">
-          <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.3*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="0.3*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Frame BorderColor="Black"  CornerRadius="100"  Grid.Column="1" Grid.Row="0" IsClippedToBounds="True" Padding="0" HeightRequest="150" WidthRequest="150" HorizontalOptions="CenterAndExpand">
-                <Image x:Name="theImage" Source="{Binding UserImgSrc}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" HeightRequest="150" WidthRequest="150"/>
-            </Frame>
-          </Grid>
+            <Grid BackgroundColor="Black">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75*" />
+                    <ColumnDefinition Width="850*" />
+                    <ColumnDefinition Width="75*" />
+                </Grid.ColumnDefinitions>
 
-          <Grid HorizontalOptions="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="35"/>
-                <ColumnDefinition Width="35"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60" />
-            </Grid.RowDefinitions>
+                <ScrollView Grid.Row="0" Grid.Column="1">
+                    <StackLayout Spacing="10" Padding="0,20,0,0">
 
-            <ImageButton Source="gallery.png" HeightRequest="35"   VerticalOptions="Center" WidthRequest="35" HorizontalOptions="End" BackgroundColor="White" Grid.Column="0" Grid.Row="0" Command="{Binding PickImageCommand}"/>
-            <ImageButton Source="camera.jpg" HeightRequest="35"  VerticalOptions="Center" WidthRequest="35" HorizontalOptions="Start" Grid.Column="1" Grid.Row="0" BackgroundColor="White" Command="{Binding CameraImageCommand}"/>
-          </Grid>
+                        <Label Text="Profile Page" TextColor="White" FontFamily="CustomFont" HorizontalOptions="Center" FontSize="35"/>
+                        <Image Source="whiteUserIcon.png" Grid.Column="1" Grid.Row="0" HeightRequest="150" WidthRequest="150" HorizontalOptions="CenterAndExpand"/>
 
-            <Label Text="{Binding Name}" 
-                           Style="{StaticResource ProfilePicLable}" FontFamily="CustomFont" TextColor="White" FontSize="19" />
+                    <Frame BackgroundColor="#dee2e6" HasShadow="False" CornerRadius="7" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Padding="16">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Your name:" FontFamily="CustomFont" TextColor="Black" FontSize="19" Grid.Column="0" VerticalOptions="CenterAndExpand"/>
+                            <Label Grid.Column="1" Text="{Binding FullName}" FontFamily="CustomFont" HorizontalTextAlignment="Start" FontSize="15" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
 
-            <Label Text="{Binding Email}"                        
-                           Style="{StaticResource ProfilePicLable}" FontFamily="CustomFont" TextColor="White" FontSize="19" />
+                        </Grid>
+                    </Frame>
 
-            <Label Text="{Binding Birthday}" 
-                           Style="{StaticResource ProfilePicLable}" FontFamily="CustomFont" TextColor="White" FontSize="19" />
+                    <Frame BackgroundColor="#adb5bd" HasShadow="False" CornerRadius="7" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Padding="16">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Your email:" FontFamily="CustomFont" TextColor="Black" FontSize="19" Grid.Column="0" VerticalOptions="CenterAndExpand"/>
+                            <Label Grid.Column="1" Text="{Binding Email}" FontFamily="CustomFont" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                        </Grid>
+                    </Frame>
 
-            <Label Text="{Binding Rank}" 
-                           Style="{StaticResource ProfilePicLable}" FontFamily="CustomFont" TextColor="White" FontSize="19" />
 
-           
+                    <Frame BackgroundColor="#6c757d" x:Name="birthdaypicker" HasShadow="False" CornerRadius="7" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Padding="16">
+                          <Grid>
+                              <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                              </Grid.ColumnDefinitions>
+                              <Label Text="Your birthday:" FontFamily="CustomFont" TextColor="Black" FontSize="19" Grid.Column="0" VerticalOptions="CenterAndExpand"/>
+                              <Label Grid.Column="1" Text="{Binding Birthday, StringFormat='{0:dd/MM/yyyy}'}" FontFamily="CustomFont" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                          </Grid>
+                    </Frame>
 
-        </StackLayout>
-            </RefreshView>
-        </ContentView>
+                    <Frame BackgroundColor="#495057" HasShadow="False" CornerRadius="7" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Padding="16">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Your points:" FontFamily="CustomFont" TextColor="Black" FontSize="19" Grid.Column="0" VerticalOptions="CenterAndExpand"/>
+                            <Label Grid.Column="1" Text="{Binding Points}" FontFamily="CustomFont" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                        </Grid>
+                    </Frame>
 
+                    <Frame BackgroundColor="#343a40" HasShadow="False" CornerRadius="7" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Padding="16">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Your rank:" FontFamily="CustomFont" TextColor="Black" FontSize="19" Grid.Column="0" VerticalOptions="CenterAndExpand"/>
+                            <Label Grid.Column="1" Text="{Binding Rank}" FontFamily="CustomFont" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                        </Grid>
+                    </Frame>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Button TextTransform="None" Command="{Binding UpdateInfoPageCommand}" Text="Update Info" CornerRadius="7" TextColor="Black" FontSize="16" FontFamily="CustomFont" HorizontalOptions="StartAndExpand" WidthRequest="115" Padding="7" HeightRequest="35" BackgroundColor="#2a6f97" />
+                            <Button TextTransform="None" Command="{Binding LogOutCommand}" Text="Log Out" CornerRadius="7" TextColor="Black" FontSize="16" FontFamily="CustomFont" HorizontalOptions="EndAndExpand" WidthRequest="115" Padding="7" HeightRequest="35" BackgroundColor="#f94144" />
+                        </StackLayout>
+
+                        <Frame BackgroundColor="Transparent"></Frame>
+
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+            
     </ContentView.Content>
 </ContentView>

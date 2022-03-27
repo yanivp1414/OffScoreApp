@@ -6,5 +6,12 @@
         <Style TargetType="Label">
             <Setter Property="FontFamily" Value="CustomFont" />
         </Style>
+        <Style TargetType="Label" x:Key="Title" >
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontFamily" Value="CustomFont" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="FontSize" Value="45" />
+        </Style>
+               
     </Application.Resources>
 </Application>

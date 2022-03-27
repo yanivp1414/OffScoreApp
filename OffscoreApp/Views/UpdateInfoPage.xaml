@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OffscoreApp.Views.UpdateInfoPage">
+    
+    <ContentPage.Content>
+        <Grid BackgroundColor="Black">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="75*" />
+                <ColumnDefinition Width="850*" />
+                <ColumnDefinition Width="75*" />
+            </Grid.ColumnDefinitions>
+
+            <ScrollView Grid.Row="0" Grid.Column="1">
+                <StackLayout Spacing="10">
+
+                    <Label Text="Update Profile" TextColor="White" FontFamily="CustomFont" HorizontalOptions="Center" FontSize="35"/>
+                    <Image Source="whiteUserIcon.png" Grid.Column="1" Grid.Row="0" HeightRequest="150" WidthRequest="150" HorizontalOptions="CenterAndExpand"/>
+
+                    <Frame BackgroundColor="#dee2e6" HasShadow="False" CornerRadius="7" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Padding="20,10,10,10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Your name:" FontFamily="CustomFont" TextColor="Black" FontSize="19" Grid.Column="0" VerticalOptions="CenterAndExpand"/>
+                            <Entry Grid.Column="1" Text="{Binding FullName}" Placeholder="Update your name" FontFamily="CustomFont" HorizontalTextAlignment="Start" FontSize="15" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"  PlaceholderColor="Black"/>
+
+                        </Grid>
+                    </Frame>
+
+                    <Frame BackgroundColor="#6c757d" x:Name="birthdaypicker" HasShadow="False" CornerRadius="7" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Padding="20,10,10,10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Your birthday:" FontFamily="CustomFont" TextColor="Black" FontSize="19" Grid.Column="0" VerticalOptions="CenterAndExpand"/>
+                            <DatePicker Grid.Column="1" Date="{Binding Birthday}" FontFamily="CustomFont" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                        </Grid>
+                    </Frame>
+
+                    <Frame BackgroundColor="#495057" HasShadow="False" CornerRadius="7" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Padding="20,10,10,10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Your password:" FontFamily="CustomFont" TextColor="Black" FontSize="19" Grid.Column="0" VerticalOptions="CenterAndExpand"/>
+                            <Entry Grid.Column="1" Text="{Binding Password}" Placeholder="Update your password" FontFamily="CustomFont" HorizontalTextAlignment="Start" FontSize="15" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"  PlaceholderColor="Black"/>
+
+                        </Grid>
+                    </Frame>
+
+
+                    <StackLayout Orientation="Horizontal">
+                        <Button TextTransform="None" Command="{Binding UpdateCommand}" Text="Update Info" CornerRadius="7" TextColor="Black" FontSize="16" FontFamily="CustomFont" HorizontalOptions="CenterAndExpand" WidthRequest="115" Padding="7" HeightRequest="35" BackgroundColor="#2a6f97" />
+                    </StackLayout>
+
+                    <Frame BackgroundColor="Transparent"></Frame>
+
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+
+    </ContentPage.Content>
+    </ContentPage>

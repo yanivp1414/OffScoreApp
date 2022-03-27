@@ -17,21 +17,16 @@ namespace OffscoreApp.ViewModels
 {
     class ProfilePageViewModel : BaseViewModel
     {
-        #region UserImgSrc
-        private string userImgSrc;
-        public string UserFullName;
-        public string Email;
-        public string Password;
-        FileResult imageFileResult;
+        public event Action<Page> push;
+        private OffscoreWebService proxy;
+        private string fullName;
+        private DateTime birthday;
+        private string email;
+        private string password;
+        private int points;
+        private int rank;
 
-        public string UserImgSrc
-        {
-            get => userImgSrc;
-            set => SetValue(ref userImgSrc, value);
-            
-        }
-        private const string DEFAULT_PHOTO_SRC = "user.png";
-        #endregion
+
 
         #region ServerStatus
         private string serverStatus;
@@ -43,16 +38,83 @@ namespace OffscoreApp.ViewModels
         }
         #endregion
 
+        #region Is Refreshing
+        private bool isRefreshing;
+        public bool IsRefreshing
+        {
+            get { return isRefreshing; }
+            set => SetValue(ref isRefreshing, value);
+        }
+        #endregion
+
+        public int Points
+        {
+            get => points;
+            set => SetValue(ref points, value);
+        }
+
+        public int Rank
+        {
+            get => rank;
+            set => SetValue(ref rank, value);
+        }
+
+        public string Password
+        {
+            get => password;
+            set => SetValue(ref password, value);
+        }
+
+        public DateTime Birthday
+        {
+            get => birthday.Date;
+            set => SetValue(ref birthday, value);
+        }
+
+
+        public string FullName
+        {
+            get => fullName;
+            set => SetValue(ref fullName, value);
+        }
+
+        public string Email
+        {
+            get => email;
+            set => SetValue(ref email, value);
+        }
         public ProfilePageViewModel()
         {
-            // Setup default image photo
-            this.UserImgSrc = DEFAULT_PHOTO_SRC;
-            this.imageFileResult = null; //mark that no picture was chosen
-            UserFullName = "";
-            Email = "";
-            Password = "";
-
+            if (((App)App.Current).User != null)
+            {
+                proxy = OffscoreWebService.CreateProxy();
+                FullName = ((App)App.Current).User.FullName;
+                Birthday = ((App)App.Current).User.Birthday;
+                Email = ((App)App.Current).User.Email;
+                Points = ((App)App.Current).User.Points;
+            }
         }
+
+        public Command LoadProfileCommand => new Command(() => LoadProfile());
+        public void LoadProfile()
+        {
+            IsRefreshing = false;
+        }
+
+        //public int GetRank()        
+
+   //     {
+
+     //   }
+        public Command UpdateInfoPageCommand => new Command(() => UpdateInfoPage());
+
+        public void UpdateInfoPage()
+        {
+            push?.Invoke(new Views.UpdateInfoPage());
+        }
+
+     
+
 
     }
 }

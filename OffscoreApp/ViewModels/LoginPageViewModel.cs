@@ -35,8 +35,10 @@ namespace OffscoreApp.ViewModels
             {
                 ((App)App.Current).User = user;
                 push?.Invoke(new TabControlPage());
+                return;
             }
-              
+            await App.Current.MainPage.DisplayAlert("Login Failed", "Email or password are incorrect!\nPlease try again.", "OK");
+
         }
             
         public LoginPageViewModel()

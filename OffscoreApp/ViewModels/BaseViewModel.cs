@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace OffscoreApp.ViewModels
 {
     //This VM will act as a base for all child classes. The class inherits INPC and has an additional method for setting a value
-    abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -26,9 +26,7 @@ namespace OffscoreApp.ViewModels
                     this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected void SetValue<T>(ref T backingField,
-              T value,
-              [CallerMemberName] string propertyName = null)
+        protected void SetValue<T>(ref T backingField, T value, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(
                          backingField, value)) return;

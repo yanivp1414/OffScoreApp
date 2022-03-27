@@ -10,13 +10,13 @@ using Xamarin.Forms.Xaml;
 namespace OffscoreApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePage : ContentView
+    public partial class StartUpPage : ContentPage
     {
-        public HomePage()
+        public StartUpPage()
         {
-            HomePageViewModel context = new HomePageViewModel();
+            StartUpPageViewModel context = new StartUpPageViewModel();
             this.BindingContext = context;
-            InitializeComponent();
+            InitializeComponent();            
         }
     }
 }

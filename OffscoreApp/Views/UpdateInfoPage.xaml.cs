@@ -10,13 +10,14 @@ using Xamarin.Forms.Xaml;
 namespace OffscoreApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePage : ContentView
+    public partial class UpdateInfoPage : ContentPage
     {
-        public HomePage()
+        public UpdateInfoPage()
         {
-            HomePageViewModel context = new HomePageViewModel();
-            this.BindingContext = context;
             InitializeComponent();
+            UpdateInfoViewModel uIVM = new UpdateInfoViewModel();
+            uIVM.push += (p) => Navigation.PushAsync(p);
+            this.BindingContext = uIVM;
         }
     }
 }

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OffscoreApp.Views.GuessingPage"
+             Background="Black" Padding="15">
+
+    <ContentView.Content>
+        <Label Text="Guessing Page" Style="{StaticResource Title}"/>
+    </ContentView.Content>
+</ContentView>

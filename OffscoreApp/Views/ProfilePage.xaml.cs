@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using OffscoreApp.ViewModels;
 
 namespace OffscoreApp.Views
 {
@@ -14,6 +15,9 @@ namespace OffscoreApp.Views
     {
         public ProfilePage()
         {
+            ProfilePageViewModel context = new ProfilePageViewModel();
+            context.push += (p) => Navigation.PushAsync(p);
+            this.BindingContext = context;
             InitializeComponent();
         }
     }

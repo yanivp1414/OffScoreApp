@@ -96,5 +96,160 @@ namespace OffscoreApp.Services
             }
 
         }
+
+        public async Task<Account> UpdateAsync(string name, DateTime birthday, string password, string id)
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{BASE_URI}/api/Update?name={name}&birthday={birthday}&pass={password}&id={id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    Account b = JsonSerializer.Deserialize<Account>(content, options);
+                    return b;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+
+        }
+        public async Task<List<GameGuesses>> GetGuesses(List<Game> games, int userId)
+        {
+            try
+            {
+                List<string> idsList = new List<string>();
+                string ids = "";
+                foreach (Game game in games)
+                {
+                    idsList.Add(game.GameId.ToString());
+                }
+                ids = String.Join("_", idsList);
+
+                HttpResponseMessage response = await this.client.GetAsync($"{BASE_URI}/api/GetGuesses?ids={ids}&UserId={userId}");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    List<GameGuesses> b = JsonSerializer.Deserialize<List<GameGuesses>>(content, options);
+                    return b;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+
+        }
+
+        public async Task<List<Game>> GetActiveGames()
+        {
+            try
+            {
+               
+                HttpResponseMessage response = await this.client.GetAsync($"{BASE_URI}/api/GetActiveGames");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    List<Game> b = JsonSerializer.Deserialize<List<Game>>(content, options);
+                    return b;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+
+        }
+
+        public async Task<List<League>> GetLeagues()
+        {
+            try
+            {
+
+                HttpResponseMessage response = await this.client.GetAsync($"{BASE_URI}/api/GetLeagues");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    List<League> b = JsonSerializer.Deserialize<List<League>>(content, options);
+                    return b;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+
+        }
+
+        public async Task<List<Team>> GetTeams()
+        {
+            try
+            {
+
+                HttpResponseMessage response = await this.client.GetAsync($"{BASE_URI}/api/GetTeams");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    List<Team> b = JsonSerializer.Deserialize<List<Team>>(content, options);
+                    return b;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+
+        }
     }
 }
