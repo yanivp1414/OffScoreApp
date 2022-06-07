@@ -93,6 +93,7 @@ namespace OffscoreApp.ViewModels
                 Email = ((App)App.Current).User.Email;
                 Points = ((App)App.Current).User.Points;
             }
+            ((App)App.Current).UserChanged += Refresh;
         }
 
         public Command LoadProfileCommand => new Command(() => LoadProfile());
@@ -101,19 +102,31 @@ namespace OffscoreApp.ViewModels
             IsRefreshing = false;
         }
 
-        //public int GetRank()        
-
-   //     {
-
-     //   }
+        
         public Command UpdateInfoPageCommand => new Command(() => UpdateInfoPage());
-
         public void UpdateInfoPage()
         {
             push?.Invoke(new Views.UpdateInfoPage());
         }
 
-     
+        public Command Logout => new Command(LogoutMethod);
+        private void LogoutMethod()
+        {
+            proxy.Logout();
+            ((App)App.Current).User = null;
+            App.Current.MainPage = new NavigationPage(new LoginPage()) { BarBackgroundColor = Color.Black };
+        }
+        
+        public void Refresh()
+        {
+            if(((App)App.Current).User != null)
+            {
+                FullName = ((App)App.Current).User.FullName;
+                Birthday = ((App)App.Current).User.Birthday;
+                Email = ((App)App.Current).User.Email;
+                Points = ((App)App.Current).User.Points;
+            }
+        }
 
 
     }

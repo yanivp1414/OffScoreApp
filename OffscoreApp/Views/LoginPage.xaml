@@ -57,11 +57,6 @@
                             Style="{StaticResource LoginEntry}" FontFamily="CustomFont" PlaceholderColor="Black" FontSize="19" />
                     <Entry x:Name="Password" Text="{Binding Password}" Placeholder="Password" 
                             Style="{StaticResource LoginEntry}" IsPassword="True" FontFamily="CustomFont" PlaceholderColor="Black" FontSize="19" />
-                    <Label Text="Forgot Password?" Grid.Row="4" Grid.Column="1" HorizontalOptions="End"  VerticalOptions="Center" FontSize="13" TextColor="Black" TextDecorations="Underline">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ResetPassword}" />
-                        </Label.GestureRecognizers>
-                    </Label>
                 </StackLayout>
             </Frame>
             <Button TextTransform="None" Command="{Binding LoginCommand}" Text="Login" Style="{StaticResource LoginButton}" CornerRadius="7" TextColor="Black" FontSize="26" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" FontFamily="CustomFont" HorizontalOptions="Center" WidthRequest="250" Padding="8" />

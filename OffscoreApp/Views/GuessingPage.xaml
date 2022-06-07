@@ -1,10 +1,77 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="OffscoreApp.Views.GuessingPage"
-             Background="Black" Padding="15">
+             x:Class="OffscoreApp.Views.GuessingPage">
 
-    <ContentView.Content>
-        <Label Text="Guessing Page" Style="{StaticResource Title}"/>
-    </ContentView.Content>
-</ContentView>
+    <ContentPage.Resources>
+        <Style TargetType="Entry" x:Key="TeamScoreEntry">
+            <Setter Property="PlaceholderColor" Value="White"/>
+            <Setter Property="HeightRequest" Value="40"/>
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+        <Style TargetType="Button" x:Key="PlaceGuessButton">
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="BackgroundColor" Value="#8E8C86"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid BackgroundColor="Black">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="75*" />
+                <ColumnDefinition Width="850*" />
+                <ColumnDefinition Width="75*" />
+            </Grid.ColumnDefinitions>
+            
+            <ScrollView Grid.Row="0" Grid.Column="1">
+                <StackLayout Spacing="10" Padding="0,30,0,0">
+                    <Label Text="Guessing page" Style="{StaticResource Title}"/>
+
+                                <Grid Padding="0,40">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="0.1" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="3*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Frame BackgroundColor="#dee2e6" HasShadow="False" CornerRadius="7" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Padding="10">
+                                        <Label Text="{Binding Team1.TeamName}" TextColor="Black" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+                                    </Frame>
+                                    <Label Text="VS" HorizontalOptions="CenterAndExpand" FontSize="25" TextColor="White" Grid.Row="0" Grid.Column="1"  VerticalOptions="CenterAndExpand"/>
+                                    <Frame BackgroundColor="#dee2e6" HasShadow="False" CornerRadius="7" Grid.Row="0" Grid.Column="2" VerticalOptions="Center" Padding="10">
+                                        <Label Text="{Binding Team2.TeamName}" TextColor="Black" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+                                    </Frame>
+                                    <Label Text="Guess team 1:" HorizontalOptions="CenterAndExpand" FontSize="20" TextColor="White" Grid.Row="1" Grid.Column="0" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Guess team 2:" HorizontalOptions="CenterAndExpand" FontSize="20" TextColor="White" Grid.Row="1" Grid.Column="2" VerticalOptions="CenterAndExpand" />
+
+
+                                    <Frame Margin="55,0,45,0" BackgroundColor="#dee2e6"  HasShadow="False" CornerRadius="7" VerticalOptions="Center" Padding="2" Grid.Column="0" Grid.Row="2">
+                                        <Entry Text="{Binding Team1Guess}" TextColor="Black" HorizontalTextAlignment="Center" Placeholder="0"
+                                        Style="{StaticResource TeamScoreEntry}"  FontFamily="CustomFont" PlaceholderColor="Black" FontSize="19" />
+                                    </Frame>
+                                    <Label Text=":" HorizontalOptions="CenterAndExpand" FontSize="25" TextColor="White" VerticalOptions="CenterAndExpand" Grid.Column="1" Grid.Row="2" />
+                                    <Frame Margin="40,0,60,0" BackgroundColor="#dee2e6" HasShadow="False" CornerRadius="7" VerticalOptions="Center" Padding="2" Grid.Column="2" Grid.Row="2">
+                                        <Entry Text="{Binding Team2Guess}" HorizontalTextAlignment="Center" TextColor="Black" Placeholder="0"
+                                        Style="{StaticResource TeamScoreEntry}" FontFamily="CustomFont" PlaceholderColor="Black" FontSize="19" />
+                                    </Frame>
+                                        
+                                </Grid>
+
+                    <Button TextTransform="None" Command="{Binding PlaceGuessCommand}" Style="{StaticResource PlaceGuessButton}" Text="Place guess"  CornerRadius="7" TextColor="Black" FontSize="26" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" FontFamily="CustomFont" HorizontalOptions="Center" WidthRequest="250" Padding="8"/>
+
+
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+    
+</ContentPage>

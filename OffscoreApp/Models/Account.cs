@@ -25,5 +25,7 @@ namespace OffscoreApp.Models
         public int ActivitySatus { get; set; }
         public virtual ActivityStatus ActivitySatusNavigation { get; set; }
         public virtual ICollection<Guess> Guesses { get; set; }
+
+        public int Rank { get; set; }
     }
 }

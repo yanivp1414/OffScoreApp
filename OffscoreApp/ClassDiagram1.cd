@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="OffscoreApp.Models.Account">
+    <Position X="3.5" Y="12.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACCQAgIIAAgAAAAAACAAIAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Models\Account.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ActivitySatusNavigation" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Guesses" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="OffscoreApp.Models.ActivityStatus">
+    <Position X="7.75" Y="11.75" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAIAAAAAAIAAAAAAAQAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ActivityStatus.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Accounts" />
+      <Property Name="Games" />
+      <Property Name="Guesses" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="OffscoreApp.Models.Game">
+    <Position X="7.25" Y="7.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAEgAAAAAAAAAIAAAEAAAAAAgAAIAAEAAAAAAAAQAA=</HashCode>
+      <FileName>Models\Game.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ActivityStatusNavigation" />
+      <Property Name="Team2" />
+      <Property Name="Team1" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Guesses" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="OffscoreApp.Models.GameGuesses">
+    <Position X="11" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAABAEAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GameGuesses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OffscoreApp.Models.GameObject">
+    <Position X="13.25" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAABAEAAAAAAgAAAAAAAEgBAAAAQCA=</HashCode>
+      <FileName>Models\GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OffscoreApp.Models.Guess">
+    <Position X="3.25" Y="9" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAgAAAAAAAgFgEAAAAAAAgAAAAEAAAAAAAAAEA=</HashCode>
+      <FileName>Models\Guess.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Account" />
+      <Property Name="ActivityStatusNavigation" />
+      <Property Name="Game" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OffscoreApp.Models.League">
+    <Position X="7.25" Y="1" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABCAAQAAAAIAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Models\League.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="TeamGlobalLeagues" />
+      <Property Name="TeamLocalLeagues" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="OffscoreApp.Models.Team">
+    <Position X="8" Y="4.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAQAAAAAAAAEABCDAAAAAAAASAAAAAAAAAA=</HashCode>
+      <FileName>Models\Team.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="GlobalLeague" />
+      <Property Name="LocalLeague" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="GameTeam1s" />
+      <Property Name="GameTeam2s" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

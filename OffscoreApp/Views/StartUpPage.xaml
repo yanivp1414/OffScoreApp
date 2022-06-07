@@ -4,7 +4,15 @@
              x:Class="OffscoreApp.Views.StartUpPage" Background="Black">
     <ContentPage.Content>
         <StackLayout>
-       
+            <Grid BackgroundColor="Black"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0.5*" />
+                </Grid.RowDefinitions>
+
+                <Image Source="mainLogo.png" WidthRequest="750" HeightRequest="200" Grid.Row="1" HorizontalOptions="CenterAndExpand"></Image>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -64,20 +64,11 @@
                         </Grid>
                     </Frame>
 
-                    <Frame BackgroundColor="#343a40" HasShadow="False" CornerRadius="7" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Padding="16">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Text="Your rank:" FontFamily="CustomFont" TextColor="Black" FontSize="19" Grid.Column="0" VerticalOptions="CenterAndExpand"/>
-                            <Label Grid.Column="1" Text="{Binding Rank}" FontFamily="CustomFont" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
-                        </Grid>
-                    </Frame>
+                    
 
                         <StackLayout Orientation="Horizontal">
                             <Button TextTransform="None" Command="{Binding UpdateInfoPageCommand}" Text="Update Info" CornerRadius="7" TextColor="Black" FontSize="16" FontFamily="CustomFont" HorizontalOptions="StartAndExpand" WidthRequest="115" Padding="7" HeightRequest="35" BackgroundColor="#2a6f97" />
-                            <Button TextTransform="None" Command="{Binding LogOutCommand}" Text="Log Out" CornerRadius="7" TextColor="Black" FontSize="16" FontFamily="CustomFont" HorizontalOptions="EndAndExpand" WidthRequest="115" Padding="7" HeightRequest="35" BackgroundColor="#f94144" />
+                            <Button TextTransform="None" Command="{Binding Logout}" Text="Log Out" CornerRadius="7" TextColor="Black" FontSize="16" FontFamily="CustomFont" HorizontalOptions="EndAndExpand" WidthRequest="115" Padding="7" HeightRequest="35" BackgroundColor="#f94144" />
                         </StackLayout>
 
                         <Frame BackgroundColor="Transparent"></Frame>

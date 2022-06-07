@@ -33,7 +33,7 @@
                        Animate="False"
                        SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}">
                 <views:LeaderboardPage />
-                <views:GuessingPage />
+                <views:PreviousGamesPage />
                 <views:HomePage />
                 <views:TeamListPage />
                 <views:ProfilePage />
@@ -52,7 +52,7 @@
                             IconImageSource="graphLogo.png" />
 
                     <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
-                            IconImageSource="questionMarkLogo.png" />
+                            IconImageSource="previousPageLogo.png" />
 
                     <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
                             IconImageSource="hoseLogo.png" />

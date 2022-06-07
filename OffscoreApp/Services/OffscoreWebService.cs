@@ -191,6 +191,18 @@ namespace OffscoreApp.Services
             }
 
         }
+        public async void Logout()
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{BASE_URI}/api/Logout");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
 
         public async Task<List<League>> GetLeagues()
         {
@@ -207,6 +219,35 @@ namespace OffscoreApp.Services
                     };
                     string content = await response.Content.ReadAsStringAsync();
                     List<League> b = JsonSerializer.Deserialize<List<League>>(content, options);
+                    return b;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+
+        }
+        public async Task<List<Guess>> GetPreviousDays(int numberOfDays, int accountId)
+        {
+            try
+            {
+
+                HttpResponseMessage response = await this.client.GetAsync($"{BASE_URI}/api/GetPreviousDays?NumberOfDays={numberOfDays}&Id={accountId}");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    List<Guess> b = JsonSerializer.Deserialize<List<Guess>>(content, options);
                     return b;
                 }
                 else
@@ -250,6 +291,126 @@ namespace OffscoreApp.Services
                 return null;
             }
 
+        }
+        public async Task<List<Game>> GetGamesByIds(List<int> ids)
+        {
+            try
+            {
+                string list = JsonSerializer.Serialize(ids);
+                HttpResponseMessage response = await this.client.GetAsync($"{BASE_URI}/api/GetGamesByIds?ids={list}");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    List<Game> b = JsonSerializer.Deserialize<List<Game>>(content, options);
+                    return b;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+
+        }
+        public async Task<Game> GetGamesById(int id)
+        {
+            try
+            {
+                
+                HttpResponseMessage response = await this.client.GetAsync($"{BASE_URI}/api/GetGameById?id={id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    Game b = JsonSerializer.Deserialize<Game>(content, options);
+                    return b;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+
+        }
+
+        public async Task<List<Account>> GetLeaderboard()
+        {
+            try
+            {
+
+                HttpResponseMessage response = await this.client.GetAsync($"{BASE_URI}/api/GetLeaderboard");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    List<Account> b = JsonSerializer.Deserialize<List<Account>>(content, options);
+                    return b;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        public async Task<bool> AddGuess(Guess g)
+        {
+            try
+            {
+                string json = JsonSerializer.Serialize(g);
+
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await this.client.PostAsync($"{BASE_URI}/api/AddGuess", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string result = await response.Content.ReadAsStringAsync();
+                    bool b = JsonSerializer.Deserialize<bool>(result);
+                    return b;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }

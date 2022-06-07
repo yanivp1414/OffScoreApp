@@ -2,9 +2,67 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OffscoreApp.Views.LeaderboardPage"
-             Background="Black" Padding="15">
+             Background="Black" Padding="25">
+
+    <ContentView.Resources>
+        <Style TargetType="Label" x:Key="topText">
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+    </ContentView.Resources>
     
-    <ContentView.Content>
-        <Label Text="Leaderboard" Style="{StaticResource Title}"/>
+    <ContentView.Content> 
+        <StackLayout>
+            <Label Text="Leaderboard" Style="{StaticResource Title}" Margin="0,20"/>
+            <Grid HeightRequest="30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.2*" />
+                    <ColumnDefinition Width="1.7" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="1.7" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Text="Rank" Style="{StaticResource topText}" />
+                <BoxView Grid.Column="1" HeightRequest="1.7" BackgroundColor="LightGray" />
+                <Label Grid.Column="2" HorizontalOptions="Center" Text="User Name" Style="{StaticResource topText}" />
+                <BoxView Grid.Column="3" HeightRequest="1.7" BackgroundColor="LightGray" />
+                <Label Grid.Column="4" HorizontalOptions="Center" Text="Total points" Style="{StaticResource topText}" />
+            </Grid>
+            <BoxView HeightRequest="1.7" BackgroundColor="LightGray" WidthRequest="2000" />
+            <ListView SelectionMode="None" ItemsSource="{Binding Leaderboard}" SeparatorVisibility="Default" SeparatorColor="LightGray" GroupDisplayBinding="{Binding GlobalLeague.LeagueName}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Style="{StaticResource topText}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="#"/>
+                                            <Span Text="{Binding Rank}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Grid.Column="1" Style="{StaticResource topText}" Text="{Binding FullName}" />
+                                <Label Grid.Column="2" Style="{StaticResource topText}" HorizontalOptions="Center" >
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Points}" />
+                                            <Span Text=" pts" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ContentView.Content>
 </ContentView>

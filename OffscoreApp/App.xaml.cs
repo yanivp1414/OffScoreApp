@@ -10,13 +10,24 @@ namespace OffscoreApp
 {
     public partial class App : Application
     {
-        public Account User { get; set; }
+        private Account user;
+        public Account User
+        {
+            get => user;
+            set
+            {
+                user = value;
+                UserChanged?.Invoke();
+            }
+        }
+        public event Action UserChanged;
         public List<Game> DailyGames { get; set; }
         public List<League> Leagues   { get; set; }
         public List<Team> Teams { get; set; }
 
         public App()
         {
+            user = null;
             InitializeComponent();
             MainPage = new StartUpPage();
 

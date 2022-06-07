@@ -3,23 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using OffscoreApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using OffscoreApp.ViewModels;
 
 namespace OffscoreApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfilePage : ContentView
+    public partial class PreviousGamesPage : ContentView
     {
-        public ProfilePage()
+        public PreviousGamesPage()
         {
-            ProfilePageViewModel context = new ProfilePageViewModel();
-            context.push += (p) => Navigation.PushAsync(p);
-            this.BindingContext = context;
+            this.BindingContext = new PreviousGamesViewModel();
             InitializeComponent();
         }
-        
     }
 }

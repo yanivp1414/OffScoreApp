@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="OffscoreApp.Views.HomePage"
-             NavigationPage.HasNavigationBar="False" x:Name="thisPage">
+             x:Class="OffscoreApp.Views.PreviousGamesPage"
+             Background="Black" Padding="5">
 
     <ContentView.Content>
         <Grid BackgroundColor="Black">
@@ -15,36 +15,38 @@
             <ScrollView Grid.Row="0" Grid.Column="1">
                 <StackLayout Spacing="10" Padding="0,30,0,0">
 
-                    <Label Text="Today's games" Style="{StaticResource Title}"/>
-                    <CollectionView ItemsSource="{Binding ActiveGames}">
+                    <Label Text="Previous games" Style="{StaticResource Title}"/>
+                    <CollectionView ItemsSource="{Binding Guesses}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Padding="0,10">
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Source={x:Reference thisPage}, Path=BindingContext.GoToGuessingPage}" CommandParameter="{Binding GameId}" />
-                                    </Grid.GestureRecognizers>
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.5*" />
+                                        <RowDefinition Height="*" />
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="0.1" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
+
                                         <ColumnDefinition Width="3*" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="3*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <Frame BackgroundColor="#dee2e6" HasShadow="False" CornerRadius="7" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Padding="10">
+
+                                    <Label Text="{Binding GuessDate}" Grid.Row="0" Grid.ColumnSpan="3" FontSize="20" VerticalOptions="Center" TextColor="White" HorizontalOptions="Center"/>
+                                    <Frame BackgroundColor="#dee2e6" HasShadow="False" CornerRadius="7" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Padding="10">
                                         <Label Text="{Binding Team1}" TextColor="Black" HorizontalOptions="CenterAndExpand" FontSize="18"/>
                                     </Frame>
-                                    <Label Text="VS" HorizontalOptions="CenterAndExpand" FontSize="25" TextColor="White" Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand" />
-                                    <Frame BackgroundColor="#dee2e6" HasShadow="False" CornerRadius="7" Grid.Row="0" Grid.Column="2" VerticalOptions="Center" Padding="10">
+                                    <Label Text="VS" HorizontalOptions="CenterAndExpand" FontSize="25" TextColor="White" Grid.Row="1" Grid.Column="1" VerticalOptions="CenterAndExpand" />
+                                    <Frame BackgroundColor="#dee2e6" HasShadow="False" CornerRadius="7" Grid.Row="1" Grid.Column="2" VerticalOptions="Center" Padding="10">
                                         <Label Text="{Binding Team2}" TextColor="Black" HorizontalOptions="CenterAndExpand" FontSize="18"/>
                                     </Frame>
-                                    <Label Text="Guess:" HorizontalOptions="CenterAndExpand" FontSize="25" TextColor="White" Grid.Row="1" Grid.Column="0" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Guess:" HorizontalOptions="CenterAndExpand" FontSize="25" TextColor="White" Grid.Row="2" Grid.Column="0" VerticalOptions="CenterAndExpand" />
 
-                                    <StackLayout Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Orientation="Horizontal" Padding="10,0">
+                                    <StackLayout Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="1" Orientation="Horizontal" Padding="10,0">
                                         <Frame BackgroundColor="#dee2e6" HasShadow="False" CornerRadius="7" VerticalOptions="Center" Padding="10">
                                             <Label Text="{Binding Team1Guess}" TextColor="Black" HorizontalOptions="CenterAndExpand" FontSize="18"/>
                                         </Frame>
@@ -54,8 +56,8 @@
                                         </Frame>
                                     </StackLayout>
 
-                                    <Label Text="Result:" HorizontalOptions="CenterAndExpand" FontSize="25" TextColor="White" Grid.Row="2" Grid.Column="0" VerticalOptions="CenterAndExpand" />
-                                    <StackLayout Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="1" Orientation="Horizontal" Padding="10,0">
+                                    <Label Text="Result:" HorizontalOptions="CenterAndExpand" FontSize="25" TextColor="White" Grid.Row="3" Grid.Column="0" VerticalOptions="CenterAndExpand" />
+                                    <StackLayout Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="1" Orientation="Horizontal" Padding="10,0">
                                         <Frame BackgroundColor="#dee2e6" HasShadow="False" CornerRadius="7" VerticalOptions="Center" Padding="10">
                                             <Label Text="{Binding Team1Score}" TextColor="Black" HorizontalOptions="CenterAndExpand" FontSize="18"/>
                                         </Frame>
@@ -64,15 +66,24 @@
                                             <Label Text="{Binding Team2Score}" TextColor="Black" HorizontalOptions="CenterAndExpand" FontSize="18"/>
                                         </Frame>
                                     </StackLayout>
-                                    <BoxView BackgroundColor="LightGray" Grid.ColumnSpan="3" Grid.Row="3"/>
+
+                                    <Label Text="Earned points:" HorizontalOptions="CenterAndExpand" FontSize="25" TextColor="White" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" VerticalOptions="CenterAndExpand" />
+                                    <StackLayout Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Orientation="Horizontal" Padding="10,0">
+                                        <Frame BackgroundColor="#dee2e6" HasShadow="False" CornerRadius="7" VerticalOptions="Center" Padding="10">
+                                            <Label Text="{Binding PointsEarned}" TextColor="Black" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+                                        </Frame>
+                                    </StackLayout>
+
+                                    <BoxView BackgroundColor="LightGray" Grid.ColumnSpan="3" Grid.Row="5"/>
                                 </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                
+
                 </StackLayout>
             </ScrollView>
         </Grid>
 
     </ContentView.Content>
+    
 </ContentView>

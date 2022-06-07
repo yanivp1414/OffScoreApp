@@ -39,7 +39,8 @@ namespace OffscoreApp.ViewModels
                     Team1 = g.Team1.TeamName,
                     Team1Guess = "-",
                     Team2 = g.Team2.TeamName,
-                    Team2Guess = "-"
+                    Team2Guess = "-",
+                    GameId = g.GameId
                 };
 
                 if (g.FinalScore != "")
@@ -50,8 +51,8 @@ namespace OffscoreApp.ViewModels
                 }
                 else
                 {
-                        gO.Team1Score = "-";
-                        gO.Team2Score = "-";
+                    gO.Team1Score = "-";
+                    gO.Team2Score = "-";
                 }
                 if (currentGame != null)
                 {
@@ -62,16 +63,9 @@ namespace OffscoreApp.ViewModels
 
             }
         }
+
+        public Command<int> GoToGuessingPage => new Command<int>((id) => App.Current.MainPage.Navigation.PushAsync(new GuessingPage(id)));
                        
     }
-    class GameObject
-    {
-        public string Team1{ get; set;}
-        public string Team2 { get; set; }
-        public string Team1Guess { get; set; }
-        public string Team2Guess { get; set; }
-        public string Team1Score { get; set; }
-        public string Team2Score { get; set; }
-
-    }
+   
 }
